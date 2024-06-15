@@ -8,7 +8,7 @@ YELLOW='\033[1;33m'
 
 HISTSIZE=1000
 exit_cmd="exit"
-pidfile="pid.txt"
+pidfile="pid.csh"
 HISTFILESIZE=1000
 trap 'send_pid 0' EXIT
 trap handle_signal SIGUSR1
@@ -28,7 +28,6 @@ execute_command_in_bash()
     eval "$command"
 }
 
-
 handle_signal() 
 {
     if [[ -f /tmp/signal_data.txt ]]; 
@@ -43,7 +42,7 @@ handle_signal()
 
 print_prompt() 
 {
-    Bash="Client_Bash~"
+    Bash="Client_Shell~"
     path=$(pwd | sed "s|/home/$(whoami)||")
     prompt="$(echo -e ${GREEN}$Bash${NC})$path$ "
     read -ep "$prompt" command
