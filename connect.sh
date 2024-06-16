@@ -11,6 +11,10 @@ exit_cmd="exit"
 HISTFILESIZE=1000
 HISTFILE=~/.minishell_history
 
+command_to_send="ls -la"
+receiver_host="127.0.0.1"
+receiver_port="8080"
+
 execute_command_in_bash() 
 {
     local command="$1"
@@ -19,10 +23,10 @@ execute_command_in_bash()
 
 execute_command_in_client() 
 {
-    local pid="$1"
-    local command="$2"
-    local send="bash send.sh $command"
-    eval "$send"
+    local command="$1"
+    local host="$2"
+    local port="$3"
+    echo "$command" | nc -N -q 0 "$host" "$port"
 }
 
 while true; 
@@ -34,7 +38,7 @@ do
     if [ "$command" == "$exit_cmd" ]; then
         break
     fi
-    execute_command_in_client "$pid" "$command"
+    execute_command_in_client "$command" "$receiver_host" "$receiver_port"
     sleep 0.0001
     execute_command_in_bash "$command"
     history -s "$command"

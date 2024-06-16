@@ -12,6 +12,7 @@ MESSAGE=$*
 usage() 
 {
     echo -e "${RED}Usage: $0 <message>${NC}"
+    echo -e "${RED}Yours: $0 $*${NC}"
     exit 1
 }
 
