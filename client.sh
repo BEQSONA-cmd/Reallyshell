@@ -8,12 +8,12 @@ YELLOW='\033[1;33m'
 
 HISTSIZE=1000
 exit_cmd="exit"
-pidfile="pid.csh"
+pidfile="$HOME/Reallyshell/pid.csh"
 HISTFILESIZE=1000
 trap 'send_pid 0' EXIT
 trap handle_signal SIGUSR1
 HISTFILE=~/.minishell_history
-client_server_file="client_server.sh"
+client_server_file="$HOME/Reallyshell/client_server.sh"
 
 
 if pgrep -f client_server.sh > /dev/null; then

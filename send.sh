@@ -5,7 +5,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
-pidfile="pid.csh"
+pidfile="$HOME/Reallyshell/pid.csh"
 PID=$(cat "$pidfile")
 MESSAGE=$*
 

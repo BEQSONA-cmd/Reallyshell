@@ -21,7 +21,7 @@ int	check_alias(void)
 	}
 	while (std::getline(file, line))
 	{
-		if (line == "alias new_cpp=~/Reallyshell/client.sh")
+		if (line == "alias client=~/Reallyshell/client.sh")
 		{
 			std::cerr << "Alias already present in the file" << std::endl;
 			file.close();
@@ -54,7 +54,7 @@ int	main(void)
 		if(check_alias() == 1)
 			exit(0);
 		ft_putstr_fd("\n", file);
-		ft_putstr_fd("alias new_cpp=~/Reallyshell/client.sh\n", file);
+		ft_putstr_fd("alias client=~/Reallyshell/client.sh\n", file);
 	}
 	file.close();
 	return (0);

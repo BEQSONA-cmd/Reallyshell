@@ -8,10 +8,12 @@ BLUE='\033[0;34m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 
+send_file="$HOME/Reallyshell/send.sh"
+
 execute_command_in_client() 
 {
     local command="$1"
-    local send="bash send.sh '$command'"
+    local send="bash $send_file \"$command\""
     eval "$send"
 }
 
