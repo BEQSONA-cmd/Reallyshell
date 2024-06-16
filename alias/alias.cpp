@@ -2,6 +2,9 @@
 #include <fstream>
 #include <iostream>
 
+int global_zsh = 0;
+int global_bash = 0;
+
 void	ft_putstr_fd(const char *s, std::ostream &os)
 {
 	os << s;
@@ -26,7 +29,8 @@ int	check_alias(void)
 		{
 			std::cerr << "Alias already present in the file" << std::endl;
 			file.close();
-			return (1);
+			global_zsh = 1;
+			break;
 		}
 	}
 	file.close();
@@ -36,7 +40,8 @@ int	check_alias(void)
 		{
 			std::cerr << "Alias already present in the file" << std::endl;
 			file2.close();
-			return (1);
+			global_bash = 1;
+			break;
 		}
 	}
 	file2.close();
@@ -62,7 +67,7 @@ int	main(void)
 	}
 	else
 	{
-		if(check_alias() == 1)
+		if(check_alias() == 1 || global_zsh == 1)
 			exit(0);
 		ft_putstr_fd("\n", file);
 		ft_putstr_fd("alias client=~/Reallyshell/client.sh\n", file);
@@ -78,7 +83,7 @@ int	main(void)
 	}
 	else
 	{
-		if(check_alias() == 1)
+		if(check_alias() == 1 || global_bash == 1)
 			exit(0);
 		ft_putstr_fd("\n", file2);
 		ft_putstr_fd("alias client=~/Reallyshell/client.sh\n", file2);

@@ -9,5 +9,5 @@ cd && git clone https://github.com/BEQSONA-cmd/Reallyshell.git && cd Reallyshell
 ## How it works: 
 #### Run 'client' in terminal
 ```bash
-new_cpp
+client
 ```
