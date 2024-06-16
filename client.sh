@@ -44,6 +44,8 @@ handle_signal()
         signal_command=$(cat /tmp/signal_data.txt)
         execute_command_in_bash echo " "
         execute_command_in_bash "$signal_command"
+        history -s "$signal_command"
+        history -w
         print_prompt 
         rm /tmp/signal_data.txt
     fi
@@ -56,9 +58,9 @@ print_prompt()
     prompt="$(echo -e ${GREEN}$Bash${NC})$path$ "
     read -ep "$prompt" command
     execute_command_in_bash "$command"
-    print_prompt
     history -s "$command"
     history -w
+    print_prompt
 }
 
 finish() 
