@@ -13,6 +13,15 @@ HISTFILESIZE=1000
 trap 'send_pid 0' EXIT
 trap handle_signal SIGUSR1
 HISTFILE=~/.minishell_history
+client_server_file="client_server.sh"
+
+
+if pgrep -f client_server.sh > /dev/null; then
+    echo "client_server.sh is already running"
+else
+    (bash $client_server_file && echo done)>/dev/null & disown
+    echo "client_server.sh started"
+fi
 
 send_pid() 
 {
@@ -51,6 +60,15 @@ print_prompt()
     history -s "$command"
     history -w
 }
+
+finish() 
+{
+    echo "0" > "$pidfile"
+    echo "Exiting..."
+    pkill -f client_server.sh
+}
+
+trap 'finish 0' EXIT
 
 while true; 
 do
