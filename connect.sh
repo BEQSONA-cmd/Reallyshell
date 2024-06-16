@@ -23,11 +23,9 @@ execute_command_in_bash()
 
 execute_command_in_client() 
 {
-message="$1"
-response="HTTP/1.1 200 OK Content-type: application/json
-
-{\"message\": \"$message\"}"
-echo -ne "$response" | nc -q 0 -l -p 8080 &
+    message="$1"
+    response="HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{\"message\": \"$message\"}"
+    echo -ne "$response" | nc -l -p 8080 -q 0
 }
 
 while true; 
