@@ -11,9 +11,9 @@ exit_cmd="exit"
 HISTFILESIZE=1000
 HISTFILE=~/.minishell_history
 
-command_to_send="ls -la"
-receiver_host="127.0.0.1"
-receiver_port="8080"
+# receiver_host="127.0.0.1"
+# receiver_host="54.242.110.206"
+# receiver_port="8080"
 
 execute_command_in_bash() 
 {
@@ -23,10 +23,11 @@ execute_command_in_bash()
 
 execute_command_in_client() 
 {
-    local command="$1"
-    local host="$2"
-    local port="$3"
-    echo "$command" | nc -N -q 0 "$host" "$port"
+message="$1"
+response="HTTP/1.1 200 OK Content-type: application/json
+
+{\"message\": \"$message\"}"
+echo -ne "$response" | nc -q 0 -l -p 8080 &
 }
 
 while true; 
