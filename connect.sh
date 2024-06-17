@@ -15,12 +15,6 @@ HISTFILE=~/.minishell_history
 # receiver_host="54.242.110.206"
 # receiver_port="8080"
 
-execute_command_in_bash() 
-{
-    local command="$1"
-    eval "$command"
-}
-
 execute_command_in_client() 
 {
     message="$1"
@@ -38,8 +32,6 @@ do
         break
     fi
     execute_command_in_client "$command" "$receiver_host" "$receiver_port"
-    sleep 0.0001
-    execute_command_in_bash "$command"
     history -s "$command"
     history -w
 done
