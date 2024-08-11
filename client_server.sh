@@ -24,7 +24,7 @@ convert_from_message_to_command()
     execute_command_in_client "$command"
 }
 
-SERVER_URL="http://52.90.24.19:8080/trigger-signal"
+SERVER_URL="http://54.167.106.126:8080/trigger-signal"
 
 check_signals() 
 {
